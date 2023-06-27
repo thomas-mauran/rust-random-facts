@@ -6,7 +6,8 @@ use random_facts::event::{Event, EventHandler};
 use random_facts::handler::handle_key_events;
 use random_facts::tui::Tui;
 
-fn main() -> AppResult<()> {
+#[tokio::main]
+async fn main() -> AppResult<()> {
     // Create an application.
     let mut app = App::new();
 
@@ -24,7 +25,7 @@ fn main() -> AppResult<()> {
         // Handle events.
         match tui.events.next()? {
             Event::Tick => app.tick(),
-            Event::Key(key_event) => handle_key_events(key_event, &mut app)?,
+            Event::Key(key_event) => handle_key_events(key_event, &mut app).await?,
             Event::Mouse(_) => {}
             Event::Resize(_, _) => {}
         }

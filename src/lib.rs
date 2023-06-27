@@ -12,3 +12,9 @@ pub mod tui;
 
 /// Event handler.
 pub mod handler;
+
+/// Requests
+pub mod fact;
+
+// Errors
+pub mod errors;
